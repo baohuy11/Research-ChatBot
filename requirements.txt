@@ -1,4 +1,4 @@
-sentence-transformers==2.2.2
+sentence-transformers
 langchain
 flask
 pypdf
@@ -11,4 +11,6 @@ langchain_experimental
 beautifulsoup4
 requests
 openai
+aiohttp==3.11.11
+pillow==10.4.0
 -e .

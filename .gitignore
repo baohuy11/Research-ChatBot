@@ -175,3 +175,6 @@ cython_debug/
 
 data/
 
+.DS_Store
+*.DS_Store
+*.dSYM
