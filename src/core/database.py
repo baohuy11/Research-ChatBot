@@ -65,3 +65,13 @@ def vector_database_summarize(filename: str, directory: str, index_name: str) ->
     )
     print(f'Successfully added {len(documents)} documents to {index_name}')
     return docsearch
+
+def enrich_metadata(json_entry: str, chunk_id: str) -> dict:
+    return {
+        "title": json_entry['title'],
+        "source": json_entry['arxiv_pdf'],
+        "chunk_id": chunk_id,
+        "github": json_entry['github_page'],
+        "project": json_entry['project_page'],
+        "arxiv": json_entry['arxiv_page'],
+    }

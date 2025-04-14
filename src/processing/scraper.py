@@ -5,7 +5,7 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 from datetime import datetime
-from pdf_processor import summarize_pdf
+from processing.pdf_processor import summarize_pdf
 from config.config import settings 
 from core.model import summarizer_model
 
