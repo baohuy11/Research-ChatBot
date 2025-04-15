@@ -7,7 +7,7 @@ from urllib.parse import urljoin
 from datetime import datetime
 from processing.pdf_processor import summarize_pdf
 from config.config import settings 
-from core.model import summarizer_model
+from core.model import summarizer_model, tokenizer_model
 
 HUGGINGFACE_PAPERS_URL = settings.HUGGINGFACE_PAPERS_URL
 PAPER_DATE = settings.PAPER_DATE
@@ -80,6 +80,7 @@ def save_data_locally(data, filename, directory):
 def main():
     today_papers = parse_papers(HUGGINGFACE_PAPERS_URL, PAPER_DATE)
     summarizer = summarizer_model()
+    tokenizer = tokenizer_model()
     if not today_papers:
         print("No papers found for today.")
         return
@@ -91,7 +92,7 @@ def main():
             print(f"No PDF link found for {paper['title']}")
             continue
 
-        paper['summary'] = summarize_pdf(paper['arxiv_pdf'], summarizer)
+        paper['summary'] = summarize_pdf(paper['arxiv_pdf'], summarizer, tokenizer)
             
     filename = f"papers_{DATE}.json"
     save_data_locally(today_papers, filename, settings.DB_PATH)
